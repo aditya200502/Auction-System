@@ -95,7 +95,10 @@ export const register = (data) => async (dispatch) => {
       data,
       {
         withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+        },
       }
     );
     dispatch(userSlice.actions.registerSuccess(response.data));
@@ -116,7 +119,11 @@ export const login = (data) => async (dispatch) => {
       data,
       {
         withCredentials: true,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+
+        },
       }
     );
     dispatch(userSlice.actions.loginSuccess(response.data));
@@ -133,7 +140,13 @@ export const logout = () => async (dispatch) => {
   try {
     const response = await axios.get(
       "https://auction-system-lhk5.onrender.com/api/v1/user/logout",
-      { withCredentials: true }
+      { withCredentials: true ,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+
+        }
+      }
     );
     dispatch(userSlice.actions.logoutSuccess());
     toast.success(response.data.message);
@@ -150,6 +163,11 @@ export const fetchUser = () => async (dispatch) => {
   try {
     const response = await axios.get("https://auction-system-lhk5.onrender.com/api/v1/user/me", {
       withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+
+      }
     });
     dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
     dispatch(userSlice.actions.clearAllErrors());
@@ -167,6 +185,11 @@ export const fetchLeaderboard = () => async (dispatch) => {
       "https://auction-system-lhk5.onrender.com/api/v1/user/leaderboard",
       {
         withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+
+        }
       }
     );
     dispatch(

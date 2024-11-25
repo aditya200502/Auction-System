@@ -28,7 +28,9 @@ export const postCommissionProof = (data) => async (dispatch) => {
       data,
       {
         withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+         },
       }
     );
     dispatch(commissionSlice.actions.postCommissionProofSuccess());

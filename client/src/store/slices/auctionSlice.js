@@ -91,7 +91,12 @@ export const getAllAuctionItems = () => async (dispatch) => {
   try {
     const response = await axios.get(
       "https://auction-system-lhk5.onrender.com/api/v1/auctionitem/allitems",
-      { withCredentials: true }
+      { withCredentials: true ,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app",
+        },
+      }
     );
     dispatch(
       auctionSlice.actions.getAllAuctionItemSuccess(response.data.items)
@@ -109,7 +114,12 @@ export const getMyAuctionItems = () => async (dispatch) => {
   try {
     const response = await axios.get(
       "https://auction-system-lhk5.onrender.com/api/v1/auctionitem/myitems",
-      { withCredentials: true }
+      { withCredentials: true,
+        headers: {
+      "Content-Type": "multipart/form-data",
+      "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app",
+    },
+       }
     );
     dispatch(auctionSlice.actions.getMyAuctionsSuccess(response.data.items));
     dispatch(auctionSlice.actions.resetSlice());
@@ -125,7 +135,12 @@ export const getAuctionDetail = (id) => async (dispatch) => {
   try {
     const response = await axios.get(
       `https://auction-system-lhk5.onrender.com/api/v1/auctionitem/auction/${id}`,
-      { withCredentials: true }
+      { withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app",
+        }
+       }
     );
     dispatch(auctionSlice.actions.getAuctionDetailSuccess(response.data));
     dispatch(auctionSlice.actions.resetSlice());
@@ -144,7 +159,9 @@ export const createAuction = (data) => async (dispatch) => {
       data,
       {
         withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+         },
       }
     );
     dispatch(auctionSlice.actions.createAuctionSuccess());
@@ -166,7 +183,9 @@ export const republishAuction = (id, data) => async (dispatch) => {
       data,
       {
         withCredentials: true,
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+         },
       }
     );
     dispatch(auctionSlice.actions.republishItemSuccess());
@@ -189,6 +208,9 @@ export const deleteAuction = (id) => async (dispatch) => {
       `https://auction-system-lhk5.onrender.com/api/v1/auctionitem/delete/${id}`,
       {
         withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+         }
       }
     );
     dispatch(auctionSlice.actions.deleteAuctionItemSuccess());

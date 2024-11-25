@@ -26,7 +26,9 @@ export const placeBid = (id, data) => async (dispatch) => {
   try {
     const response = await axios.post(`https://auction-system-lhk5.onrender.com/api/v1/bid/place/${id}`, data, {
       withCredentials: true,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://newonline-auctionpanel.netlify.app"
+       },
     });
     dispatch(bidSlice.actions.bidSuccess());
     toast.success(response.data.message);
